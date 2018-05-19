@@ -1,0 +1,17 @@
+services:
+- docker
+script:
+- docker build -t wtanaka/ubuntu-1604-oracle-java-10 .
+- 'docker run wtanaka/ubuntu-1604-oracle-java-10
+  java -version 2>&1 | grep ''java version "10.'''
+- 'docker run wtanaka/ubuntu-1604-oracle-java-10
+  sh -c "apt-get update && apt-get install less"'
+after_success:
+- 'curl -H "Content-Type: application/json"
+  --data ''{"source_type": "Branch", "source_name": "master"}''
+  -X POST
+  https://registry.hub.docker.com/u/wtanaka/docker-ubuntu-1604-oracle-java-10/trigger/0685cb20-a312-4f89-8d47-63327242f9bd/'
+notifications:
+  email:
+    recipients:
+      secure: TsdeQbkLUYXyasygHW3WoUDfMFRVg7xcFMoJs0bzMSU38WrRybIdhYmIcUZol8P9d8oTfGQYGAnc9Cu7GTuKV17Zja/0za5OEucjq9g8CsGs+J5G60NrVJwa/xHYUVvSVn2Pn84hFynCg2W0gJr9+nPMRsvnhecWwKfrhBcXmvRa1y432FOKw/lRCq14nOcdAH9+b/h1W0m45GAaecAz47/W9UUcwc5mgBnFBWz1dxDUo8GT6CvfbK7/QGvLk3JcDih5vVhC2ROOD/sO+UNXm/ai42p3TPGuFGtomTjekewdM1ie+gwovMd8OQLxIjInfgVm7o3Ov+3uV5EoHnxyuZGxwZeLbCGxk+rcJ1MYyJn7Hh6uDrBoAE+LmtQlME8WZ+GISWX4E8gLiIiu0GesXFjx8nkVZyB+kdphy0Q+lDLKur5P3TW+SU/VEC0cnLb/zzwWelkbfjqPbDODipOWaFbg4jCEXySglJ0OH904n4JI7HryXO5cNwzvRrvIcNcKSvKey3BTodEUk5M/X8zfJ68h9TGtoisGIDNz1jki4PR5aNH0OVA5QGyXLm/GDL+9YfcA9uFLooMHolyg9rNjQ47XX4wYOogUez0Y0YetSrd1RWFY9Wn4hgWtBXLW9RG69DW/4A4bSZuW/C+dpbl9MR7qufNK52E69TRmQabU4bE=
