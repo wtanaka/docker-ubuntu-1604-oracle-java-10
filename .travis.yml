@@ -10,7 +10,7 @@ after_success:
 - 'curl -H "Content-Type: application/json"
   --data ''{"source_type": "Branch", "source_name": "master"}''
   -X POST
-  https://registry.hub.docker.com/u/wtanaka/docker-ubuntu-1604-oracle-java-10/trigger/0685cb20-a312-4f89-8d47-63327242f9bd/'
+  https://registry.hub.docker.com/u/wtanaka/ubuntu-1604-oracle-java-10/trigger/f89db862-c69d-43f0-a1bc-7b12de15ca1e/'
 notifications:
   email:
     recipients:
